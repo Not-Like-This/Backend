@@ -14,13 +14,18 @@ export class Report extends BaseEntity {
     @Column()
     spotName: string;
 
+    // Rating
+
+    @Column()
+    rating: number;
+
     //TODO: Others
 
     static fromDto(dto: CreateSpotsDto) {
         const e = new Report();
 
         e.city = dto.city;
-        e.spotName = dto.spotName;
+        e.spotName = dto.spotname;
 
         return e;
     }
