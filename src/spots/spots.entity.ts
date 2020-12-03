@@ -2,7 +2,7 @@ import { Entity, PrimaryGeneratedColumn, BaseEntity, Column} from "typeorm";
 import { CreateSpotsDto } from "./dto/create-spots.dto";
 
 @Entity()
-export class Report extends BaseEntity {
+export class Spots extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -22,7 +22,7 @@ export class Report extends BaseEntity {
     //TODO: Others
 
     static fromDto(dto: CreateSpotsDto) {
-        const e = new Report();
+        const e = new Spots();
 
         e.city = dto.city;
         e.spotName = dto.spotname;
