@@ -1,5 +1,4 @@
 import { Injectable } from "@nestjs/common";
-import { report } from "process";
 import { CreateReportDto } from "./dto/create-report.dto";
 import { Report } from "./report.entity";
 
@@ -10,7 +9,7 @@ export class ReportsService {
 		return await report.save();
 	}
 
-	async list(){
+	async list() {
 		return await Report.find();
 	}
 }

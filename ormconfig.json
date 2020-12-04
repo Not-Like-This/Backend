@@ -2,5 +2,7 @@
 	"type": "postgres",
 	"url": "postgres://xcgsmyvj:RM2j0mdbAoE0fXL5UNybi88vbKxafy5Y@hattie.db.elephantsql.com:5432/xcgsmyvj",
 	"synchronize": true,
-	"entities": ["dist/**/*.entity{.ts,.json}"]
+	"entities": [
+		"dist/**/*.entity.js"
+	]
 }
