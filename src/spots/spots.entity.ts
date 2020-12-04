@@ -1,33 +1,32 @@
-import { Entity, PrimaryGeneratedColumn, BaseEntity, Column} from "typeorm";
+import { Entity, PrimaryGeneratedColumn, BaseEntity, Column } from "typeorm";
 import { CreateSpotsDto } from "./dto/create-spots.dto";
 
 @Entity()
 export class Spots extends BaseEntity {
-    @PrimaryGeneratedColumn()
-    id: number;
+	@PrimaryGeneratedColumn()
+	id: number;
 
-    // General infos
+	// General infos
 
-    @Column()
-    city: string;
+	@Column()
+	city: string;
 
-    @Column()
-    spotName: string;
+	@Column()
+	spotName: string;
 
-    // Rating
+	// Rating
 
-    @Column()
-    rating: number;
+	@Column()
+	rating: number;
 
-    //TODO: Others
+	//TODO: Others
 
-    static fromDto(dto: CreateSpotsDto) {
-        const e = new Spots();
+	static fromDto(dto: CreateSpotsDto) {
+		const e = new Spots();
 
-        e.city = dto.city;
-        e.spotName = dto.spotname;
+		e.city = dto.city;
+		e.spotName = dto.spotname;
 
-        return e;
-    }
-
+		return e;
+	}
 }

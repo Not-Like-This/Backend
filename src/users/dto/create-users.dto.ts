@@ -4,7 +4,7 @@ export class CreateUsersDto {
 	// General infos
 
 	@IsEmail()
-	mail: string;
+	email: string;
 
 	@MinLength(8)
 	@MaxLength(150)
@@ -15,6 +15,6 @@ export class CreateUsersDto {
 	name: string;
 
 	@MinLength(2)
-	@MinLength(256)
+	@MaxLength(256)
 	city: string;
 }

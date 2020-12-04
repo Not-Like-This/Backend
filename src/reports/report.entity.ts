@@ -14,21 +14,21 @@ export class Report extends BaseEntity {
 	@Column()
 	spotName: string;
 
-	@Column("datetime")
+	@Column()
 	startDate: Date;
 
-	@Column("datetime")
+	@Column()
 	endDate: Date;
 
 	// Activities quantity
 
-	@Column("integer")
+	@Column()
 	bathersAmount: number;
 
-	@Column("integer")
+	@Column()
 	practicingSportsAmount: number;
 
-	@Column("integer")
+	@Column()
 	boatAmount: number;
 
 	// Water quality
