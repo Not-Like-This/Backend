@@ -14,6 +14,6 @@ export class SpotsController {
 
     @Get()
     list(){
-        return this.service.list;
+        return this.service.list();
     }
 }
