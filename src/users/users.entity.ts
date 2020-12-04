@@ -1,37 +1,46 @@
-import { Entity, PrimaryGeneratedColumn, BaseEntity, Column} from "typeorm";
+import { NotFoundException } from "@nestjs/common";
+import { Entity, PrimaryGeneratedColumn, BaseEntity, Column } from "typeorm";
 import { CreateUsersDto } from "./dto/create-users.dto";
+import bcrypt from "bcrypt";
+
+const ROUNDS = 12;
 
 @Entity()
 export class Users extends BaseEntity {
-    @PrimaryGeneratedColumn()
-    id: number;
+	@PrimaryGeneratedColumn()
+	id: number;
 
-    //Info compte
-    @Column()
-    mail: string;
+	//Info compte
+	@Column()
+	email: string;
 
-    @Column()
-    password: string;
+	@Column()
+	password: string;
 
-    //Info User
-    @Column()
-    name: string;
+	//Info User
+	@Column()
+	name: string;
 
-    @Column()
-    city: string;
+	@Column()
+	city: string;
 
+	//TODO: Others
 
-    //TODO: Others
+	static async fromDto(dto: CreateUsersDto) {
+		const e = new Users();
 
-    static fromDto(dto: CreateUsersDto) {
-        const e = new Users();
+		e.email = dto.mail;
+		e.password = await bcrypt.hash(dto.password, ROUNDS);
+		e.name = dto.name;
+		e.city = dto.city;
 
-        e.mail = dto.mail;
-        e.password = dto.password;
-        e.name = dto.name;
-        e.city = dto.city;
+		return e;
+	}
 
-        return e;
-    }
+	static async findByEmail(email: string) {
+		const user = await Users.findOne({ email });
+		if (!user) throw new NotFoundException("Email not found");
 
+		return user;
+	}
 }
