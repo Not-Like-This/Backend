@@ -11,6 +11,7 @@ import { SpotsModule } from './spots/spots.module';
 		TypeOrmModule.forRoot({
 			type: "postgres",
 			url: process.env.DB_URL,
+			synchronize: true,
 		}),
 		UsersModule,
 		ReportsModule,

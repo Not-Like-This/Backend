@@ -1,4 +1,5 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
+import { getMaxListeners } from 'process';
 import { CreateSpotsDto } from "./dto/create-spots.dto"
 import { SpotsService } from "./spots.service";
 
@@ -9,5 +10,10 @@ export class SpotsController {
     @Post()
     create(@Body() dto: CreateSpotsDto) {
         return this.service.create(dto);
+    }
+
+    @Get()
+    list(){
+        return this.service.list;
     }
 }
