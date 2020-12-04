@@ -1,11 +1,11 @@
 import { PassportStrategy } from "@nestjs/passport";
-import { Strategy } from "passport";
+import { Strategy } from "passport-local";
 import { UsersService } from "../users.service";
-import { UnauthorizedException } from "@nestjs/common";
+import { Inject, UnauthorizedException } from "@nestjs/common";
 import { LoginUserDto } from "../dto/login-user.dto";
 
 export class UsersStrategy extends PassportStrategy(Strategy) {
-	constructor(private users: UsersService) {
+	constructor(@Inject() private users: UsersService) {
 		super({ usernameField: "email" });
 	}
 
