@@ -12,6 +12,7 @@ import * as bcrypt from "bcrypt";
 const ROUNDS = 12;
 
 @Entity()
+@Unique(["email"])
 export class Users extends BaseEntity {
 	@PrimaryGeneratedColumn()
 	id: number;
@@ -25,10 +26,10 @@ export class Users extends BaseEntity {
 
 	//Info User
 	@Column()
-	name: string;
+	firstName: string;
 
 	@Column()
-	city: string;
+	lastName: string;
 
 	//TODO: Others
 
@@ -37,8 +38,8 @@ export class Users extends BaseEntity {
 
 		e.email = dto.email;
 		e.password = await bcrypt.hash(dto.password, ROUNDS);
-		e.name = dto.name;
-		e.city = dto.city;
+		e.firstName = dto.firstName;
+		e.lastName = dto.lastName;
 
 		return e;
 	}

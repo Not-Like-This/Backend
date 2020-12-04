@@ -12,9 +12,10 @@ export class CreateUsersDto {
 
 	@MinLength(2)
 	@MaxLength(256)
-	name: string;
+	firstName: string;
 
 	@MinLength(2)
 	@MaxLength(256)
-	city: string;
+	lastName: string;
+
 }
