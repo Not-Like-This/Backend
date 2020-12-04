@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { Report } from 'src/reports/report.entity';
 import { CreateSpotsDto } from './dto/create-spots.dto';
 import { Spots } from "./spots.entity";
 
@@ -10,6 +9,6 @@ export class SpotsService {
         return await report.save();
     }
     async list(){
-        return await Report.find();
+        return await Spots.find();
     }
 }
