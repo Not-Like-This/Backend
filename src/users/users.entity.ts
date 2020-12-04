@@ -1,5 +1,9 @@
+import { NotFoundException } from "@nestjs/common";
 import { Entity, PrimaryGeneratedColumn, BaseEntity, Column } from "typeorm";
 import { CreateUsersDto } from "./dto/create-users.dto";
+import bcrypt from "bcrypt";
+
+const ROUNDS = 12;
 
 @Entity()
 export class Users extends BaseEntity {
@@ -8,7 +12,7 @@ export class Users extends BaseEntity {
 
 	//Info compte
 	@Column()
-	mail: string;
+	email: string;
 
 	@Column()
 	password: string;
@@ -22,14 +26,21 @@ export class Users extends BaseEntity {
 
 	//TODO: Others
 
-	static fromDto(dto: CreateUsersDto) {
+	static async fromDto(dto: CreateUsersDto) {
 		const e = new Users();
 
-		e.mail = dto.mail;
-		e.password = dto.password;
+		e.email = dto.mail;
+		e.password = await bcrypt.hash(dto.password, ROUNDS);
 		e.name = dto.name;
 		e.city = dto.city;
 
 		return e;
+	}
+
+	static async findByEmail(email: string) {
+		const user = await Users.findOne({ email });
+		if (!user) throw new NotFoundException("Email not found");
+
+		return user;
 	}
 }
