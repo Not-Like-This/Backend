@@ -4,8 +4,11 @@ import { Spots } from "./spots.entity";
 
 @Injectable()
 export class SpotsService {
-	async create(dto: CreateSpotsDto) {
-		const report = Spots.fromDto(dto);
-		return await report.save();
-	}
+    async create(dto: CreateSpotsDto) {
+        const report = Spots.fromDto(dto);
+        return await report.save();
+    }
+    async list(){
+        return await Spots.find();
+    }
 }

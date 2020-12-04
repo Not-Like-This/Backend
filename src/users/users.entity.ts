@@ -1,7 +1,13 @@
 import { NotFoundException } from "@nestjs/common";
-import { Entity, PrimaryGeneratedColumn, BaseEntity, Column } from "typeorm";
+import {
+	Entity,
+	PrimaryGeneratedColumn,
+	BaseEntity,
+	Column,
+	Unique,
+} from "typeorm";
 import { CreateUsersDto } from "./dto/create-users.dto";
-import bcrypt from "bcrypt";
+import * as bcrypt from "bcrypt";
 
 const ROUNDS = 12;
 
@@ -29,7 +35,7 @@ export class Users extends BaseEntity {
 	static async fromDto(dto: CreateUsersDto) {
 		const e = new Users();
 
-		e.email = dto.mail;
+		e.email = dto.email;
 		e.password = await bcrypt.hash(dto.password, ROUNDS);
 		e.name = dto.name;
 		e.city = dto.city;

@@ -8,4 +8,8 @@ export class ReportsService {
 		const report = Report.fromDto(dto);
 		return await report.save();
 	}
+
+	async list() {
+		return await Report.find();
+	}
 }

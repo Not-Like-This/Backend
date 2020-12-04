@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from "@nestjs/common";
+import { Body, Controller, Get, Post } from "@nestjs/common";
 import { CreateReportDto } from "./dto/create-report.dto";
 import { ReportsService } from "./reports.service";
 
@@ -9,5 +9,10 @@ export class ReportsController {
 	@Post()
 	create(@Body() dto: CreateReportDto) {
 		return this.service.create(dto);
+	}
+
+	@Get()
+	async list(){
+		return this.service.list();
 	}
 }
